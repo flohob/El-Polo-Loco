@@ -4,6 +4,9 @@ class World {
   level = level1;
 
   ctx;
+  StatusBarHealth = new StatusBarHealth();
+  tabasco = new Tabasco();
+  coin = new StatusCoin();
 
   canvas;
   keyboard;
@@ -14,6 +17,19 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
+    this.checkCollisions();
+  }
+
+  checkCollisions() {
+    setInterval(() => {
+      this.level.enemies.forEach((enemy) => {
+        if(this.character.isColliding(enemy))
+        this.character.hit();
+        this.StatusBarHealth.setPercentage(this.character.energy);
+        console.log(this.character.energy)
+
+      });
+    }, 200);
   }
 
   setWorld() {
@@ -22,13 +38,16 @@ class World {
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
     this.ctx.translate(this.camera_x, 0);
     this.addObjectstoMap(this.level.backgroundObjects);
     this.addObjectstoMap(this.level.cloud);
+    
     this.addtoMap(this.character);
     this.addObjectstoMap(this.level.enemies);
     this.ctx.translate(-this.camera_x, 0);
+    this.addtoMap(this.StatusBarHealth);
+    this.addtoMap(this.tabasco);
+    this.addtoMap(this.coin);
 
     let self = this;
     requestAnimationFrame(function () {

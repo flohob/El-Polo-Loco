@@ -2,7 +2,9 @@ class Level {
     enemies;
     cloud;
     backgroundObjects;
-    Enboss;
+    Endboss;
+
+    
     level_end_x = 2200;
 
     constructor(enemies,cloud,backgroundObjects) {
