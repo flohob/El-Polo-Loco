@@ -6,7 +6,7 @@ class Cloud extends MoveableObject {
         constructor() {
             super().loadImage("img/5_background/layers/4_clouds/2.png");
             this.y = 30;;
-            this.x = 0 + Math.random() * 400; 
+            this.x = 0 + Math.random() * 400; //Beschreibt einen ständigen Wechsel der X Koordinate ´
             this.animate();
 
 

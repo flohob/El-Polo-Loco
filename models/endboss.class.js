@@ -1,9 +1,9 @@
 class Endboss extends MoveableObject {
 
-    height = 300;
-    width = 200;
-    y = 360;
-    x = 70;
+    height = 300; //Höhe
+    width = 200; // Breite
+    y = 360; // Y Koordinate
+    x = 70; // X Koordinate
 
     IMAGES_WALKING = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
@@ -15,14 +15,14 @@ class Endboss extends MoveableObject {
         'img/4_enemie_boss_chicken/2_alert/G11.png',
         'img/4_enemie_boss_chicken/2_alert/G12.png',
 
-    ];
+    ]; // Verschiedne Grafiken für die Aniamtion des Endboss
 
     constructor() {
-        super().loadImage('img/4_enemie_boss_chicken/2_alert/G5.png');
-        this.y = 120;
-        this.x = 2500; 
-        this.loadImages(this.IMAGES_WALKING);
-        this.animate();
+        super().loadImage('img/4_enemie_boss_chicken/2_alert/G5.png'); // Funktion für das Laden der Bilder für die Animaton (zurzeit nur ein Standbild)
+        this.y = 120; // Zugriff zur oberen Koordinate und Änderung
+        this.x = 2500;  // Ebenfalls Zugrifff der Koordinate von Oben welche dann ebenfalls geändert wird
+        this.loadImages(this.IMAGES_WALKING); // Aufruf der Grafiken zur Animation bzw laden
+        this.animate(); // Animate Funktion
     }
 
     animate() {

@@ -6,22 +6,27 @@ class MoveableObject extends DrawableObject {
   energy = 100;
   lastHit = 0;
 
-  applyGravitiy() {
+  // Erstellung einer neuen Klasse Moveable Objects (Alle Objekte die sich bewegen sollen)
+
+  applyGravitiy() { // Funktion zur Implementierung der Erdanziehung für das Springen
     setInterval(() => {
-      if(this.isAboveGround() || this.speedY >= 20) {
-      this.y -= this.speedY;
+      if(this.isAboveGround() || this.speedY >= 20) { // If Abfrage wenn der Spieler über dem Boden ist und die Variable this.speed größer gleich 20 ist
+      this.y -= this.speedY; 
       this.speedY -= this.acceleration;
       }
     }, 1000 / 25);
   }
 
   isAboveGround() {
-    return this.y < 130;
-  }
+    if(this instanceof ThrowAbleObjects) {
+      return true;
+    } else {
+    return this.y < 130; // Gibt an ob das Objekt über den Boden ist, wird in der Apply Gravitiy benutzt
+  }};
 
 
   drawFrame(ctx) {
-    if(this instanceof Character || this instanceof chicken) {
+    if(this instanceof Character || this instanceof chicken) { 
 
     ctx.beginPath();
     ctx.lineWidth = "2";
