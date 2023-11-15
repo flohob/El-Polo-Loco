@@ -8,6 +8,8 @@ class World {
   // Kontextvariable für das Zeichnen
   ctx;
 
+  enemy = this.level.enemies;
+
   // Eine Statusleiste für die Gesundheit erstellen
   StatusBarHealth = new StatusBarHealth(); // Erstellen der Statusbar Health
 
@@ -58,8 +60,6 @@ class World {
       if (this.tabasco.collectedBottles > 0) {
         let bottle = new ThrowAbleObjects(this.character.x + 100, this.character.y + 100);
         this.throwAbleObjects.push(bottle);
-  
-        // Reduziere die Anzahl der gesammelten Flaschen
         this.tabasco.collectedBottles--;
   
         // Aktualisiere die Anzeige der Tabasco Bar
@@ -111,11 +111,30 @@ collectBottle(bottle) {
 
   checkCollisions() {
     this.level.enemies.forEach((enemy) => {
-      if (this.character.isColliding(enemy))
-      this.character.hit();
-      this.StatusBarHealth.setPercentage(this.character.energy);
-    });
+      if (!this.character.isHurt() && !enemy.isDead() && this.character.isColliding(enemy)) {
+        if (this.character.isAboveGround()) {
+          this.handleAirCollision(enemy);
+        } else {
+        this.character.hit();
+        this.StatusBarHealth.setPercentage(this.character.energy)
+        if (this.character.isAboveGround()) {
+          this.handleAirCollision();
+        }
+      }
+    }});
   }
+
+  handleAirCollision(enemy) {
+    this.character.jump();
+    enemy.energy = 0;
+    console.log(this.enemy.energy);
+    setTimeout(() => {
+        const index = this.level.enemies.indexOf(enemy);
+        if (index !== -1) {
+            this.level.enemies.splice(index, 1);
+        }
+    }, 1000); 
+}
 
   // Die Welt für den Charakter festlegen
   setWorld() {

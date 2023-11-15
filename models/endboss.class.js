@@ -4,6 +4,7 @@ class Endboss extends MoveableObject {
     width = 200; // Breite
     y = 360; // Y Koordinate
     x = 70; // X Koordinate
+    energy = 50;
 
     IMAGES_WALKING = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
