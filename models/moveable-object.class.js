@@ -5,6 +5,7 @@ class MoveableObject extends DrawableObject {
   acceleration = 2.5;
   energy = 100;
   lastHit = 0;
+  
 
   // Erstellung einer neuen Klasse Moveable Objects (Alle Objekte die sich bewegen sollen)
 
@@ -26,7 +27,7 @@ class MoveableObject extends DrawableObject {
 
 
   drawFrame(ctx) {
-    if(this instanceof Character || this instanceof chicken) { 
+    if(this instanceof Character || this instanceof chicken || this instanceof SmallChicken || this instanceof Endboss ) { 
 
     ctx.beginPath();
     ctx.lineWidth = "2";
@@ -83,6 +84,9 @@ return timepassed < 1;
 isDead() {
   return this.energy == 0;
 }
+
+
 }
+
 
 

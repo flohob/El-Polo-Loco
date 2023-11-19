@@ -14,9 +14,12 @@ class DrawableObject {
     this.img.src = path; //Die src des Bildes wird vom der Variable "path" beschrieben und die Funktion übergeben (um die Funktion immer wieder verwenden zu können)
   }
 
-  draw(ctx) { // Draw Methode um gewisse Bilder an gewissen Koordinaten mit einer gewissen Höhe und Breite zu zeichnen
-    ctx.drawImage(this.img,this.x, this.y, this.width, this.height);
+  draw(ctx) {
+    if (this.img instanceof Image) {
+      ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    }
   }
+  
 
   loadImages(arr) { // beschreibt das Laden von mehreren Bilder aus dem Arrays // der Wert Arr bseschreibt das zu ladende Array
     arr.forEach((path) => { //Hier wird eine Foreach Schleife verwendet mit der Variable path 

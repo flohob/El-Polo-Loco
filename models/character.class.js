@@ -59,6 +59,7 @@ class Character extends MoveableObject {
       if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) { // If Abfrage mit der Variable world = wenn der Spieler die Taste nach rechts drückt und der X wert des Characters kleiner als der Endpunkt ist
         this.walking_sound.play();
         this.moveRight(); // Funktion um den Character nach rechts zu bewegen
+        console.log(this.x);
       }
 
       if (this.world.keyboard.LEFT && this.x > 0) { // If Abfrage wenn der Spieler die Taste nach links drückt und der x Wert größer 0 ist
