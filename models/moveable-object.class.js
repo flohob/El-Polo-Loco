@@ -5,6 +5,12 @@ class MoveableObject extends DrawableObject {
   acceleration = 2.5;
   energy = 100;
   lastHit = 0;
+  offset = { 
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0
+};
   
 
   // Erstellung einer neuen Klasse Moveable Objects (Alle Objekte die sich bewegen sollen)
@@ -59,12 +65,13 @@ class MoveableObject extends DrawableObject {
     this.speedY = 20;
   }
 
-    isColliding (mo) {
-      return  this.x + this.width > mo.x &&
-      this.y + this.height > mo.y &&
-      this.x < mo.x &&
-      this.y < mo.y+ mo.height;
+  isColliding(obj) {
+    return this.x + this.width - this.offset.right >= obj.x + obj.offset.left &&
+           this.x + this.offset.left <= obj.x + obj.width - obj.offset.right &&
+           this.y + this.height - this.offset.bottom >= obj.y + obj.offset.top &&
+           this.y + this.offset.top <= obj.y + obj.height - obj.offset.bottom  // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
 }
+
 
 hit() {
   this.energy -= 5;

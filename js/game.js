@@ -5,11 +5,13 @@ let keyboard = new Keyboard();
 function init() {
 canvas = document.getElementById('canvas');
 world = new World(canvas, keyboard);
-
-
 console.log('My Character is', world['enemies']);
 
+}
 
+function startGame() {
+    document.getElementById('start-screen').style.display = 'none'; 
+    canvas.style.display = 'block';
 }
 
 

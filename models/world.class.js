@@ -15,6 +15,7 @@ class World {
   coin = this.level.coins;
   bottle = this.level.bottles;
   camera_x = 0; 
+  lostGame = false;
 
   
   constructor(canvas, keyboard) {
@@ -200,6 +201,12 @@ collectBottle(bottle) {
 
     if (mo.otherDirection) {
       this.flipImageback(mo);
+    }
+  }
+
+  GameLost() {
+    if(this.character.energy = 0) {
+      this.lostGame = true;
     }
   }
 

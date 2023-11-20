@@ -5,6 +5,7 @@ class Endboss extends MoveableObject {
   x = 70; // X Koordinate
   energy = 50;
   world;
+  
 
   IMAGES_WALKING = [
     "img/4_enemie_boss_chicken/1_walk/G1.png",
@@ -41,7 +42,7 @@ IMAGES_DEAD = [
     super().loadImage("img/4_enemie_boss_chicken/2_alert/G5.png"); 
     this.y = 120; 
     this.x = 2500; 
-    this.speed = 0.15 + Math.random() * 0.5;
+    this.speed = 7.5 + Math.random() * 2;
     this.loadImages(this.IMAGES_WALKING);
     this.loadImages(this.IMAGES_HURT);
     this.loadImages(this.IMAGES_DEAD); 
@@ -54,7 +55,7 @@ IMAGES_DEAD = [
       this.world.bossHitted = false;
     }, 3000);
     if (this.energy > 0) {
-        this.energy -= 25;
+        this.energy -= 10;
     }
     console.log(this.energy);
 }
