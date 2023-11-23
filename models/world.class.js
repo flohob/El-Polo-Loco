@@ -15,7 +15,6 @@ class World {
   coin = this.level.coins;
   bottle = this.level.bottles;
   camera_x = 0; 
-  lostGame = false;
 
   
   constructor(canvas, keyboard) {
@@ -106,6 +105,8 @@ collectBottle(bottle) {
           this.character.hit();
           this.StatusBarHealth.setPercentage(this.character.energy);
         }
+        
+        
       }
     });
   }
@@ -125,6 +126,7 @@ collectBottle(bottle) {
   
   setWorld() {
     this.character.world = this;
+    this.character.animate();
   }
 
 

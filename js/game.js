@@ -21,10 +21,6 @@ function endGame() {
         canvas.style.display = 'none';
         document.getElementById('end-screen-won').style.display = 'block';
     } 
-    if(world.StatusBarHealth.percentage === 0) {
-        canvas.style.display = 'none';
-        document.getElementById('end-screen').style.display = 'block';
-    }
 }
 
   

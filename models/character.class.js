@@ -3,6 +3,7 @@ class Character extends MoveableObject {
   width = 125;
   y = 50;
   speed = 5;
+  energy = 100;
   IMAGES_WALKING = [
     "img/2_character_pepe/2_walk/W-21.png",
     "img/2_character_pepe/2_walk/W-22.png",
@@ -49,8 +50,7 @@ class Character extends MoveableObject {
     this.loadImages(this.IMAGES_JUMPING);
     this.loadImages(this.IMAGES_HURT);
     this.loadImages(this.IMAGES_DEAD);
-    this.applyGravitiy(); // Hinzufügen der Gravitation (Erdanziehungskraft) für das Springend des Characters
-    this.animate(); // Animations Funktion
+    this.applyGravitiy(); // Hinzufügen der Gravitation (Erdanziehungskraft) für das Springend des Characters // Animations Funktion
   }
 
   animate() {
@@ -82,6 +82,8 @@ class Character extends MoveableObject {
       }
       if (this.isDead()) { // Wenn der Character tot ist
         this.playAnimation(this.IMAGES_DEAD);
+        document.getElementById('end-screen').style.display = 'block';
+        document.getElementById('canvas').style.display = 'none';
         
       } else if (this.isHurt()) { //Wenn der Character verletzt wurde durch eine Kollision der x Werte von Chicken und Character
         this.playAnimation(this.IMAGES_HURT);
