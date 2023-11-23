@@ -15,6 +15,21 @@ function startGame() {
 }
 
 
+
+function endGame() {
+    if(world.endboss.energy === 0) {
+        canvas.style.display = 'none';
+        document.getElementById('end-screen-won').style.display = 'block';
+    } 
+    if(world.StatusBarHealth.percentage === 0) {
+        canvas.style.display = 'none';
+        document.getElementById('end-screen').style.display = 'block';
+    }
+}
+
+  
+
+
 window.addEventListener('keydown', (e) => {
     if(e.keyCode == 39) {
         keyboard.RIGHT = true;

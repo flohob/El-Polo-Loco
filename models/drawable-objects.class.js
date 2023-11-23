@@ -4,8 +4,8 @@ class DrawableObject {
   height = 150;
   width = 100;
   img;
-  imageCache = {}; // Zwischenspeicher der Bilder
-  currentImage = 0; //Gibt wieder bei welchem der Bilder sich der COm gerade befindet
+  imageCache = {}; 
+  currentImage = 0; 
 
 
 

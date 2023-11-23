@@ -8,8 +8,6 @@ class Cloud extends MoveableObject {
             this.y = 30;;
             this.x = 0 + Math.random() * 400; //Beschreibt einen ständigen Wechsel der X Koordinate ´
             this.animate();
-
-
     }
 
     animate() {

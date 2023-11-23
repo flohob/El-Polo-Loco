@@ -82,6 +82,7 @@ class Character extends MoveableObject {
       }
       if (this.isDead()) { // Wenn der Character tot ist
         this.playAnimation(this.IMAGES_DEAD);
+        
       } else if (this.isHurt()) { //Wenn der Character verletzt wurde durch eine Kollision der x Werte von Chicken und Character
         this.playAnimation(this.IMAGES_HURT);
       }

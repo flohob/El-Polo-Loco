@@ -79,16 +79,11 @@ class World {
 }
 
 collectCoin(coin) {
-    
     this.coinbar.collectedCoins++;
-
-    
     const index = this.level.coins.indexOf(coin);
     if (index !== -1) {
         this.level.coins.splice(index, 1);
     }
-
-  
     this.coinbar.setAmountOfCoins(this.coinbar.collectedCoins);
 }
 
@@ -108,14 +103,13 @@ collectBottle(bottle) {
         if (this.character.isAboveGround()) {
           this.handleAirCollision(enemy);
         } else {
-        this.character.hit();
-        this.StatusBarHealth.setPercentage(this.character.energy)
-        if (this.character.isAboveGround()) {
-          this.handleAirCollision();
+          this.character.hit();
+          this.StatusBarHealth.setPercentage(this.character.energy);
         }
       }
-    }});
+    });
   }
+  
 
   handleAirCollision(enemy) {
     this.character.jump();
@@ -178,6 +172,7 @@ collectBottle(bottle) {
     let self = this;
     requestAnimationFrame(function () {
       self.draw();
+      endGame();
     });
   }
 
@@ -201,12 +196,6 @@ collectBottle(bottle) {
 
     if (mo.otherDirection) {
       this.flipImageback(mo);
-    }
-  }
-
-  GameLost() {
-    if(this.character.energy = 0) {
-      this.lostGame = true;
     }
   }
 

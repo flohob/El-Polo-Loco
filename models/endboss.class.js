@@ -3,7 +3,7 @@ class Endboss extends MoveableObject {
   width = 200; // Breite
   y = 360; // Y Koordinate
   x = 70; // X Koordinate
-  energy = 50;
+  energy = 20;
   world;
   
 
@@ -55,32 +55,30 @@ IMAGES_DEAD = [
       this.world.bossHitted = false;
     }, 3000);
     if (this.energy > 0) {
-        this.energy -= 10;
+        this.energy -= 5;
     }
     console.log(this.energy);
 }
 
 
-  animate() {
-    setInterval(() => {
-      if (this.world.character.x > 1550) {
-        console.log('Moving');
-        this.moveLeft();
-        this.playAnimation(this.IMAGES_WALKING);
+animate() {
+  setInterval(() => {
+    if (this.world.character.x > 1550) {
+      console.log('Moving');
+      this.moveLeft();
+      this.playAnimation(this.IMAGES_WALKING);
+    }
+    if (this.world.bossHitted === true) {
+      console.log('Endboss hit');
+      this.playAnimation(this.IMAGES_HURT);
+    } else {
+      if (this.isDead()) {
+        this.playAnimation(this.IMAGES_DEAD);
       }
-    }, 2000 / 10);
-  
-    setInterval(() => {
-      if (this.world.bossHitted === true ) { 
-        console.log('Endboss hit');
-        this.playAnimation(this.IMAGES_HURT);
-      } else {
-        if(this.isDead()) {
-          this.playAnimation(this.IMAGES_DEAD);
-        }
-      }
-    }, 200);
-  }
+    }
+  }, Math.max(2000 / 10, 200)); 
+}
+
 
 
 }  
