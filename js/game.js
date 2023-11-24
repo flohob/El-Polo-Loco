@@ -10,18 +10,16 @@ console.log('My Character is', world['enemies']);
 }
 
 function startGame() {
+    initLevel();
+    init();
     document.getElementById('start-screen').style.display = 'none'; 
     canvas.style.display = 'block';
+    
 }
 
 
 
-function endGame() {
-    if(world.endboss.energy === 0) {
-        canvas.style.display = 'none';
-        document.getElementById('end-screen-won').style.display = 'block';
-    } 
-}
+
 
   
 

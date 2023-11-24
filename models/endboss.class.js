@@ -46,7 +46,6 @@ IMAGES_DEAD = [
     this.loadImages(this.IMAGES_WALKING);
     this.loadImages(this.IMAGES_HURT);
     this.loadImages(this.IMAGES_DEAD); 
-    this.animate(); 
   }
 
   bottleHitBoss() {
@@ -74,9 +73,12 @@ animate() {
     } else {
       if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD);
+        document.getElementById('canvas').style.display = 'none';
+        document.getElementById('end-screen-won').style.display = 'block';
+        document.getElementById('endscreen').style.display = 'none';
       }
     }
-  }, Math.max(2000 / 10, 200)); 
+  }, (2000 / 10, 200)); 
 }
 
 

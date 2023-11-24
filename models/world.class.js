@@ -133,6 +133,7 @@ collectBottle(bottle) {
   setWorldEnemies() {
     this.enemy.forEach((enemy) => {
       enemy.world = this;
+      this.endboss.animate(); 
     }
     )
   }
@@ -174,7 +175,6 @@ collectBottle(bottle) {
     let self = this;
     requestAnimationFrame(function () {
       self.draw();
-      endGame();
     });
   }
 
