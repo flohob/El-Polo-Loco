@@ -1,9 +1,16 @@
 class Character extends MoveableObject {
   height = 300;
   width = 125;
-  y = 50;
+  y = 30;
   speed = 5;
   energy = 100;
+  offset = {
+    top: 130,
+    bottom: 5,
+    left: 20,
+    right: 35
+  };
+
   IMAGES_WALKING = [
     "img/2_character_pepe/2_walk/W-21.png",
     "img/2_character_pepe/2_walk/W-22.png",
@@ -39,56 +46,57 @@ class Character extends MoveableObject {
     "img/2_character_pepe/5_dead/D-55.png",
     "img/2_character_pepe/5_dead/D-56.png",
     "img/2_character_pepe/5_dead/D-57.png"
-  ]; // Verschiedene Arrays für verschiedene Szenarien des Characters
+  ]; 
 
-  world; // Definieren der World Variable um auf einen Wert oder Funktion der Js Datei zuzugreifen (this.world.keyboard)
-  walking_sound = new Audio("audio/518585_10201334-lq.mp3"); // Sound für das Laufen des Characters
-
+  world; 
+  walking_sound = new Audio("audio/518585_10201334-lq.mp3");
   constructor() {
-    super().loadImage("img/2_character_pepe/2_walk/W-21.png"); // Laden der Bilder mit der Superklasse
+    super().loadImage("img/2_character_pepe/2_walk/W-21.png"); 
     this.loadImages(this.IMAGES_WALKING); 
     this.loadImages(this.IMAGES_JUMPING);
     this.loadImages(this.IMAGES_HURT);
     this.loadImages(this.IMAGES_DEAD);
-    this.applyGravitiy(); // Hinzufügen der Gravitation (Erdanziehungskraft) für das Springend des Characters // Animations Funktion
+    this.applyGravitiy(); 
   }
 
+  showEndscreenCharacter() {
+    document.getElementById('end-screen').style.display = 'block';
+        document.getElementById('canvas').style.display = 'none';
+  } 
+
   animate() {
-    setInterval(() => { // Setzt ein Intervall
+    setInterval(() => { 
       this.walking_sound.pause(); 
-      if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) { // If Abfrage mit der Variable world = wenn der Spieler die Taste nach rechts drückt und der X wert des Characters kleiner als der Endpunkt ist
+      if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) { 
         this.walking_sound.play();
-        this.moveRight(); // Funktion um den Character nach rechts zu bewegen
+        this.moveRight(); 
         console.log(this.x);
       }
-
-      if (this.world.keyboard.LEFT && this.x > 0) { // If Abfrage wenn der Spieler die Taste nach links drückt und der x Wert größer 0 ist
-        this.moveLeft(); // Funtktion um den Character nach links zu bewegen
-        this.otherDirection = true; //setzt den Operator otherDirection auf true da der Character nach links laufen soll
-        this.walking_sound.play(); // Spielt einen gewissen Sound wenn der Spieler läuft welcher unter der Variable Walking_sound gespeichert ist
-       
+      if (this.world.keyboard.LEFT && this.x > 0) { 
+        this.moveLeft(); 
+        this.otherDirection = true; 
+        this.walking_sound.play(); 
+      }
+      if(this.world.keyboard.SPACE && !this.isAboveGround()) { 
+        this.jump(); 
       }
 
-      if(this.world.keyboard.SPACE && !this.isAboveGround()) { // If Abfrage  wennd er Spieler die Space Taste drückt und der Spieler nicht in der Luft ist und bereits springt
-        this.jump(); // Funtkion um zu Springen
-      }
-
-      this.world.camera_x = -this.x + 100; //Befehl das die Kamera mit dem Character durch die Welt geht um 100px versetzt (x = this.x von oben +100px)
+      this.world.camera_x = -this.x + 100; 
     }, 1000 / 60);
 
     setInterval(() => {
-      if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) { // If Abfrage wenn der Spieler die Tasten rechts oder links drückt
+      if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) { 
         this.playAnimation(this.IMAGES_WALKING);
       }
-      if (this.isDead()) { // Wenn der Character tot ist
+      if (this.isDead()) { 
         this.playAnimation(this.IMAGES_DEAD);
-        document.getElementById('end-screen').style.display = 'block';
-        document.getElementById('canvas').style.display = 'none';
+        this.showEndscreenCharacter();
+        this.walking_sound.muted = true; 
         
-      } else if (this.isHurt()) { //Wenn der Character verletzt wurde durch eine Kollision der x Werte von Chicken und Character
+      } else if (this.isHurt()) { 
         this.playAnimation(this.IMAGES_HURT);
       }
-      if (this.isAboveGround()) { // Wenn der Spieler in der Luft ist bzw gerade springt
+      if (this.isAboveGround()) { 
         this.playAnimation(this.IMAGES_JUMPING);
       } 
     }, 50);

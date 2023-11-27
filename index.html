@@ -31,7 +31,11 @@
 
     <div id="start-screen" class="start-screen">
       <img src="img/9_intro_outro_screens/start/startscreen_1.png" alt="Start Screen Image" />
+      <div class="buttons">
       <button onclick="startGame()">Start Game</button>
+      <button>Settings</button>
+      <button onclick="showSettings()">Story</button>
+      </div>
     </div>
 
     <div id="end-screen" class="end-screen" style="display: none;">
@@ -45,5 +49,19 @@
     </div>
 
     <canvas id="canvas" width="720" height="480" style="display: none;"> </canvas>
+
+    <div id="story-container" style="display: none;" class="settingsAndStoryContainer">
+      <div class="backIcon">
+        <img class="btn-back-settings" onclick="closeSettings()" src="/img/Backgrounds/left-arrow.png">
+    </div>
+    <span>
+      In the endless expanses of the Mexican desert, Pepe Peligroso, a brave adventurer, faces a plague of
+      wild chickens. Armed with nothing but salsa bottles, he confronts the feathered adversaries.
+      As Pepe battles through the hot sand, he encounters chickens with audacious maneuvers, revealing
+      themselves as "CocoLocos" and "Taco Tornados". Yet, his true adversary awaits at the end of the
+      desert -
+      the largest chicken of them all, feared by everyone as "El Pollo Loco".
+  </span>
+  </div>
   </body>
 </html>

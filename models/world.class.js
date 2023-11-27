@@ -4,7 +4,7 @@ class World {
   level = level1; 
   endboss = level1.enemies[6];
   ctx;
-  enemy = this.level.enemies;
+  enemy = level1.enemies;
   bossHitted = false;
   StatusBarHealth = new StatusBarHealth(); 
   tabasco = new Tabasco(); 
@@ -26,6 +26,7 @@ class World {
     this.setWorld();
     this.setWorldEnemies();
     this.run();
+    console.log(this.enemy);
   }
 
  
@@ -54,11 +55,20 @@ class World {
   checkCollisionswithTabasco() {
     this.throwAbleObjects.forEach((bottle) => {
       if (bottle.isColliding(this.endboss)) {
+        // Kollision mit dem Endboss erkannt
+  
+        // Finde den Index der Flasche im Array und entferne sie
+        const index = this.level.bottles.indexOf(bottle);
+  
+        if (index !== -1) {
+          // Flasche aus dem Array entfernen
+          this.level.bottles.splice(index, 1);
+        }
         this.endboss.bottleHitBoss();
       }
+      console.log(this.world.enemy)
     });
   }
-
   
 
   checkCollisionswithThings() {
@@ -105,12 +115,9 @@ collectBottle(bottle) {
           this.character.hit();
           this.StatusBarHealth.setPercentage(this.character.energy);
         }
-        
-        
       }
     });
   }
-  
 
   handleAirCollision(enemy) {
     this.character.jump();
@@ -120,8 +127,9 @@ collectBottle(bottle) {
         if (index !== -1) {
             this.level.enemies.splice(index, 1);
         }
-    }, 1000); 
+    }, 1000);
 }
+
 
   
   setWorld() {
@@ -194,7 +202,7 @@ collectBottle(bottle) {
 
     
     mo.draw(this.ctx);
-    mo.drawFrame(this.ctx);
+    
 
     if (mo.otherDirection) {
       this.flipImageback(mo);
@@ -214,9 +222,4 @@ collectBottle(bottle) {
     mo.x = mo.x * -1;
     this.ctx.restore();
   }
-
-
-  
-
-
 }

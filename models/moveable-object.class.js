@@ -13,9 +13,9 @@ class MoveableObject extends DrawableObject {
 };
   
 
-  // Erstellung einer neuen Klasse Moveable Objects (Alle Objekte die sich bewegen sollen)
+ 
 
-  applyGravitiy() { // Funktion zur Implementierung der Erdanziehung für das Springen
+  applyGravitiy() { 
     setInterval(() => {
       if(this.isAboveGround() || this.speedY >= 20) { // If Abfrage wenn der Spieler über dem Boden ist und die Variable this.speed größer gleich 20 ist
       this.y -= this.speedY; 
@@ -30,17 +30,6 @@ class MoveableObject extends DrawableObject {
     } else {
     return this.y < 130; // Gibt an ob das Objekt über den Boden ist, wird in der Apply Gravitiy benutzt
   }};
-
-
-  drawFrame(ctx) {
-    if(this instanceof Character || this instanceof chicken || this instanceof SmallChicken || this instanceof Endboss ) { 
-
-    ctx.beginPath();
-    ctx.lineWidth = "2";
-    ctx.strokeStyle = "blue";
-    ctx.rect(this.x, this.y, this.width, this.height);
-    ctx.stroke();
-  }}
 
   
   moveRight() {
@@ -62,7 +51,7 @@ class MoveableObject extends DrawableObject {
   }
 
   jump() {
-    this.speedY = 20;
+    this.speedY = 30;
   }
 
   isColliding(obj) {

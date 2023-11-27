@@ -17,8 +17,13 @@ function startGame() {
     
 }
 
+function showSettings() {
+    document.getElementById('story-container').style.display = 'flex';
+}
 
-
+function closeSettings() {
+    document.getElementById('story-container').style.display = 'none';
+}
 
 
   
