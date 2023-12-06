@@ -6,11 +6,10 @@ class Level {
     coins;
     bottles;
 
-    // ERstelleung eine neuen Klasse LEVEL diese gibt an was in den Levels vorkommen soll , spezifischer in Level 1 da zurzeit nur eins exestiert
     
-    level_end_x = 2200; // Ende der Welt in den Levels
+    level_end_x = 2200;
 
-    constructor(enemies,cloud,backgroundObjects,coins,bottles) { // Sagt nur dass auf die oberen Variablen zugegriffen wird
+    constructor(enemies,cloud,backgroundObjects,coins,bottles) { 
         this.cloud = cloud;
         this.enemies = enemies;
         this.backgroundObjects = backgroundObjects;

@@ -15,6 +15,7 @@ class World {
   coin = this.level.coins;
   bottle = this.level.bottles;
   camera_x = 0; 
+  
 
   
   constructor(canvas, keyboard) {
@@ -54,21 +55,19 @@ class World {
 
   checkCollisionswithTabasco() {
     this.throwAbleObjects.forEach((bottle) => {
-      if (bottle.isColliding(this.endboss)) {
-        // Kollision mit dem Endboss erkannt
-  
-        // Finde den Index der Flasche im Array und entferne sie
-        const index = this.level.bottles.indexOf(bottle);
-  
-        if (index !== -1) {
-          // Flasche aus dem Array entfernen
-          this.level.bottles.splice(index, 1);
+        if (bottle.isColliding(this.endboss)) {
+            const index = this.throwAbleObjects.indexOf(bottle);
+
+            if (index !== -1) {
+                this.throwAbleObjects.splice(index, 1);
+            }
+            if (bottle.isColliding(this.endboss)) {
+                this.endboss.bottleHitBoss();
+            }
         }
-        this.endboss.bottleHitBoss();
-      }
-      console.log(this.world.enemy)
     });
-  }
+}
+
   
 
   checkCollisionswithThings() {

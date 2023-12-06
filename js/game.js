@@ -1,31 +1,72 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+fullscreenpressed = false;
 
 function init() {
 canvas = document.getElementById('canvas');
 world = new World(canvas, keyboard);
 console.log('My Character is', world['enemies']);
-
 }
+
+
+
+
 
 function startGame() {
     initLevel();
     init();
-    document.getElementById('start-screen').style.display = 'none'; 
-    canvas.style.display = 'block';
+    document.getElementById('start-screen').classList.add('hidden'); 
+    canvas.classList.remove('hidden');
     
 }
 
-function showSettings() {
-    document.getElementById('story-container').style.display = 'flex';
+function showStory() {
+    document.getElementById('story-container').classList.remove('hidden');
+    document.getElementById('start-screen').classList.add('hidden');
+}
+
+function closeStory() {
+    document.getElementById('story-container').classList.add('hidden');
+    document.getElementById('start-screen').classList.remove('hidden');
+}
+
+function showSettings () {
+    document.getElementById('settings-screen').classList.remove('hidden');
+    document.getElementById('start-screen').classList.add('hidden');
 }
 
 function closeSettings() {
-    document.getElementById('story-container').style.display = 'none';
+    document.getElementById('settings-screen').classList.add('hidden');
+    document.getElementById('start-screen').classList.remove('hidden');
 }
 
+function buttonReload() {
+    window.location.reload();
+}
 
+function showFullscreen() {
+   document.getElementById('start-screen').classList.add('hidden');
+   document.getElementById('startscreen-fullscreen').classList.remove('hidden'); 
+  }
+
+  function closeFullscreen() {
+    document.getElementById('start-screen').classList.remove('hidden');
+    document.getElementById('startscreen-fullscreen').classList.add('hidden'); 
+   }
+
+
+
+  function startGameFullscreen() {
+    initLevel();
+    init();
+    document.getElementById('startscreen-fullscreen').classList.add('hidden');
+    document.getElementById('canvas').classList.remove('hidden');
+    document.getElementById('canvas').classList.add('fullscreen');
+    fullscreenpressed = true;
+  }
+
+  
   
 
 

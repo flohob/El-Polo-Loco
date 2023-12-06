@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>El Pollo Loco</title>
     <link rel="stylesheet" href="style.css" />
-    
     <script src="models/drawable-objects.class.js"></script>
     <script src="models/moveable-object.class.js"></script>
     <script src="models/background-object.class.js"></script>
@@ -29,39 +28,130 @@
   <body>
     <h1>El Pollo Loco</h1>
 
-    <div id="start-screen" class="start-screen">
-      <img src="img/9_intro_outro_screens/start/startscreen_1.png" alt="Start Screen Image" />
-      <div class="buttons">
-      <button onclick="startGame()">Start Game</button>
-      <button>Settings</button>
-      <button onclick="showSettings()">Story</button>
+    <div id="startscreen-fullscreen" class="hidden fullscreen fullscreen_container_startscreen">
+      <div class="fullscreen-pic-close">
+        <img class="pic-close" src="img/Backgrounds/icon-fullscreen (1).png" onclick="closeFullscreen()"></button>
+        </div>
+      <div class="fullscreen fullscreen_btn_position">
+        <button class="fullscreen_btn_start" onclick="startGameFullscreen()">Start Game</button>
       </div>
     </div>
 
-    <div id="end-screen" class="end-screen" style="display: none;">
-      <img src="img/5_background/second_half_background.png" alt="Endscreen">
-      <img class="youlost" src="img/9_intro_outro_screens/game_over/oh no you lost!.png" alt="you lost">
+    <div id="end-screen-fullscreen-won"  class="hidden fullscreen fullscreen_container_gameoverscreen">
+      <img class="fullscreen" src="img/9_intro_outro_screens/game_over/game over!.png" alt="you won" />
+      <div class="fullscreen fullscreen_btn_position">
+        <button class="fullscreen_btn_start" onclick="buttonReload()">Reload</button>
+        </div>
     </div>
 
-    <div id="end-screen-won" class="end-screen" style="display: none;">
-      <img src="img/5_background/second_half_background.png" alt="Endscreen">
-      <img class="youlost" src="img/9_intro_outro_screens/game_over/game over!.png" alt="">
+    <div id="end-screen-fullscreen" class="hidden fullscreen fullscreen_container_gameoverscreen">
+      <img class="fullscreen" src="img/9_intro_outro_screens/game_over/oh no you lost!.png" alt="">
+      <div class="fullscreen fullscreen_btn_position">
+        <button class="fullscreen_btn_start" onclick="buttonReload()">Reload</button>
+      </div>
     </div>
 
-    <canvas id="canvas" width="720" height="480" style="display: none;"> </canvas>
-
-    <div id="story-container" style="display: none;" class="settingsAndStoryContainer">
-      <div class="backIcon">
-        <img class="btn-back-settings" onclick="closeSettings()" src="/img/Backgrounds/left-arrow.png">
+    <div id="start-screen" class="start-screen">
+      <div class="fullscreen-pic" >
+      <img class="pic" src="img/Backgrounds/icon-fullscreen.png" onclick="showFullscreen()"></button>
+      </div>
+      <img
+        src="img/9_intro_outro_screens/start/startscreen_1.png"
+        alt="Start Screen Image"
+      />
+      <div class="buttons">
+        <button onclick="startGame()">Start Game</button>
+        <button onclick="showSettings()">Settings</button>
+        <button onclick="showStory()">Story</button>
+      </div>
     </div>
-    <span>
-      In the endless expanses of the Mexican desert, Pepe Peligroso, a brave adventurer, faces a plague of
-      wild chickens. Armed with nothing but salsa bottles, he confronts the feathered adversaries.
-      As Pepe battles through the hot sand, he encounters chickens with audacious maneuvers, revealing
-      themselves as "CocoLocos" and "Taco Tornados". Yet, his true adversary awaits at the end of the
-      desert -
-      the largest chicken of them all, feared by everyone as "El Pollo Loco".
-  </span>
-  </div>
+
+    <canvas id="canvas" class="hidden" width="720" height="480"></canvas>
+
+    <div id="end-screen" class="end-screen hidden">
+      <img
+        class="fullscreen-element youlost"
+        src="img/9_intro_outro_screens/game_over/oh no you lost!.png"
+        alt="you lost"
+      />
+      <div class="reload-endscreen">
+        <button class="reload-btn" onclick="buttonReload()">Reload</button>
+      </div>
+    </div>
+
+    <div id="end-screen-won" class="end-screen hidden">
+      <img src="img/5_background/second_half_background.png" alt="Endscreen" />
+      <img
+        class="youlost"
+        src="img/9_intro_outro_screens/game_over/game over!.png"
+        alt="you won"
+      />
+      <div class="reload-endscreen">
+        <button class="reload-btn" onclick="buttonReload()">Reload</button>
+      </div>
+    </div>
+
+    <div id="story-container" class="end-screen hidden">
+      <img
+        class="main-container-img"
+        src="img/5_background/second_half_background.png"
+        alt="background"
+      />
+      <div class="inner-story-container">
+        <img onclick="closeStory()" src="/img/Backgrounds/left-arrow.png" />
+        <span>
+          In the endless expanses of the Mexican desert, Pepe Peligroso, a brave
+          adventurer, faces a plague of wild chickens. Armed with nothing but
+          salsa bottles, he confronts the feathered adversaries. As Pepe battles
+          through the hot sand, he encounters chickens with audacious maneuvers,
+          revealing themselves as "CocoLocos" and "Taco Tornados". Yet, his true
+          adversary awaits at the end of the desert - the largest chicken of
+          them all, feared by everyone as "El Pollo Loco".
+        </span>
+      </div>
+    </div>
+
+    <div id="settings-screen" class="settings-screen hidden">
+      <div class="container" onclick="closeSettings()">
+        <img class="back-btn-settings" src="/img/Backgrounds/left-arrow.png" />
+        <div class="button-settings">
+          <table>
+            <tr>
+              <td>
+                <img
+                  class="img-table"
+                  src="img/Backgrounds/right-arrow-button.png"
+                />
+              </td>
+              <td>Move right</td>
+            </tr>
+
+            <tr>
+              <td>
+                <img
+                  class="img-table"
+                  src="img/Backgrounds/left-arrow-button.png"
+                />
+              </td>
+              <td>Move left</td>
+            </tr>
+
+            <tr>
+              <td>
+                <img class="img-table" src="img/Backgrounds/space-button.png" />
+              </td>
+              <td>Jump</td>
+            </tr>
+
+            <tr>
+              <td>
+                <img class="img-table" src="img/Backgrounds/d-button.png" />
+              </td>
+              <td>Throw bottle</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

@@ -2,6 +2,7 @@ class Bottles extends MoveableObject {
   
     width = 60;
     height = 60;
+    speedy = 0;
    
     IMAGES_BOTTLE =
     [

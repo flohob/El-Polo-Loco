@@ -57,8 +57,13 @@ class Endboss extends MoveableObject {
   }
 
   showEndScreen() {
-    document.getElementById("canvas").style.display = "none";
-    document.getElementById("end-screen-won").style.display = "block";
+    document.getElementById("canvas").classList.add('hidden');
+    document.getElementById("end-screen-won").classList.remove('hidden');
+  }
+
+  showEndScreenFullscreen() {
+    document.getElementById('canvas').classList.add('hidden');
+    document.getElementById('end-screen-fullscreen-won').classList.remove('hidden');
   }
 
   hadFirstContact() {
@@ -76,11 +81,17 @@ class Endboss extends MoveableObject {
       } else {
         if (this.isDead()) {
           this.playAnimation(this.IMAGES_DEAD);
-  
-          // Verzögerung (Delay) von 2 Sekunden, bevor der Endscreen angezeigt wird
+
+          // Timeout für die Endboss-Animation
           setTimeout(() => {
+            if (window.innerWidth > 720) {
+              // Rufe die Funktion mit Klammern auf
+              this.showEndScreenFullscreen();
+            } else {
+              this.showEndScreen();
+            }
+
             this.world.character.walking_sound.muted = true;
-            this.showEndScreen();
           }, 2000); // 2000 Millisekunden = 2 Sekunden
         }
       }
