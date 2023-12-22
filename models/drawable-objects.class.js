@@ -5,39 +5,41 @@ class DrawableObject {
   width = 100;
   img;
   imageCache = {}; 
-  currentImage = 0; 
+  currentImage = 0;
 
-
+/**
+ * 
+ * @param {Image src} path // Image Source
+ */
 
   loadImage(path) { 
-    this.img = new Image(); //die Variable this.img beschreibt ein neues Bild (wie document.getElem....)
-    this.img.src = path; //Die src des Bildes wird vom der Variable "path" beschrieben und die Funktion übergeben (um die Funktion immer wieder verwenden zu können)
+    this.img = new Image(); 
+    this.img.src = path; 
   }
 
+  /**
+   * 
+   * Function for drawing 
+   */
   draw(ctx) {
     if (this.img instanceof Image) {
       ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
   }
   
-
-  loadImages(arr) { // beschreibt das Laden von mehreren Bilder aus dem Arrays // der Wert Arr bseschreibt das zu ladende Array
-    arr.forEach((path) => { //Hier wird eine Foreach Schleife verwendet mit der Variable path 
-      let img = new Image(); //Variable img beschreibt ein neues Bild (Image)
-      img.src = path; // die src wird an die Variable path übergeben
-      this.imageCache[path] = img; //der Path des Image Cache wird an die Variable img übergeben
+/**
+ * 
+ * LoadImages from the Array which is used in function
+ * @param {Array} arr // Array with image src
+ */
+  loadImages(arr) { 
+    arr.forEach((path) => { 
+      let img = new Image(); 
+      img.src = path; 
+      this.imageCache[path] = img; 
     });
   }
 
-  drawFrame(ctx) {
-    if(this instanceof Character || this instanceof chicken) { // Um auchauf Werte aus Character und Chicken zuzugreifen
-
-    ctx.beginPath(); // Zeichnet Rechtecke umd die ausgewählten Objekte um Kollisionen zu entdecken
-    ctx.lineWidth = "2"; // Line Width
-    ctx.strokeStyle = "blue"; // Farbe
-    ctx.rect(this.x, this.y, this.width, this.height);
-    ctx.stroke();
-  }}
 
   
 

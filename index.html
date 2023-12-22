@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+  <html translate="no">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="img/2_character_pepe/1_idle/long_idle/I-11.png">
     <title>El Pollo Loco</title>
     <link rel="stylesheet" href="style.css" />
     <script src="models/drawable-objects.class.js"></script>
     <script src="models/moveable-object.class.js"></script>
     <script src="models/background-object.class.js"></script>
+    <script src="models/keyboard.class.js"></script>
     <script src="models/cloud.class.js"></script>
     <script src="models/world.class.js"></script>
     <script src="models/character.class.js"></script>
@@ -20,7 +23,6 @@
     <script src="models/coins.class.js"></script>
     <script src="models/endboss.class.js"></script>
     <script src="models/throwable-objects.class.js"></script>
-    <script src="models/keyboard.class.js"></script>
     <script src="models/level.class.js"></script>
     <script src="levels/levels/level1.js"></script>
     <script src="js/game.js"></script>
@@ -28,15 +30,25 @@
   <body>
     <h1>El Pollo Loco</h1>
 
-    <div id="startscreen-fullscreen" class="hidden fullscreen fullscreen_container_startscreen">
-      <div class="fullscreen-pic-close">
-        <img class="pic-close" src="img/Backgrounds/icon-fullscreen (1).png" onclick="closeFullscreen()"></button>
-        </div>
+    <!--Rotate Text-->
+    <div id="rotate-text" class="hidden rotate-text">
+      <p>Please rotate your device for a better experience!</p>
+    </div>
+
+    <!--Startscreen Fullscreen-->
+    <div id="startscreen-fullscreen"  class="hidden fullscreen fullscreen_container_startscreen">
       <div class="fullscreen fullscreen_btn_position">
-        <button class="fullscreen_btn_start" onclick="startGameFullscreen()">Start Game</button>
+        <div class="fullscreen fullscreen-close">
+          <img class="pic" src="img/Backgrounds/icon-fullscreen (1).png" onclick="closeFullscreen()" >
+          <img class="pic" id="music-btn2" src="img/Backgrounds/remove-1521310_640.png" alt="" onclick="toggleMusic()">
+          <div class="start-btn-fullscreen">
+              <button class="fullscreen_btn_start" onclick="startGameFullscreen()">Start Game</button>
+          </div>
+        </div>
       </div>
     </div>
 
+    <!--Endscreen Gameover Fullscreen-->
     <div id="end-screen-fullscreen-won"  class="hidden fullscreen fullscreen_container_gameoverscreen">
       <img class="fullscreen" src="img/9_intro_outro_screens/game_over/game over!.png" alt="you won" />
       <div class="fullscreen fullscreen_btn_position">
@@ -44,6 +56,7 @@
         </div>
     </div>
 
+    <!--Endscreen youlost fullscreen-->
     <div id="end-screen-fullscreen" class="hidden fullscreen fullscreen_container_gameoverscreen">
       <img class="fullscreen" src="img/9_intro_outro_screens/game_over/oh no you lost!.png" alt="">
       <div class="fullscreen fullscreen_btn_position">
@@ -51,9 +64,11 @@
       </div>
     </div>
 
+    <!--Startscreen-->
     <div id="start-screen" class="start-screen">
       <div class="fullscreen-pic" >
       <img class="pic" src="img/Backgrounds/icon-fullscreen.png" onclick="showFullscreen()"></button>
+      <img id="music-toggle-image" class="pic" src="img/Backgrounds/remove-1521310_640.png" alt="speaker off/on" onclick="toggleMusic()">
       </div>
       <img
         src="img/9_intro_outro_screens/start/startscreen_1.png"
@@ -66,8 +81,21 @@
       </div>
     </div>
 
-    <canvas id="canvas" class="hidden" width="720" height="480"></canvas>
 
+
+    <!--Mobile Buttons-->
+<div class="hidden" id="mobile-container">
+    <canvas id="canvas" class="hidden" width="720" height="480">
+    </canvas>
+    <div id="mobile-buttons" class="hidden mobile-buttons">
+      <img id="but2" class="mob-buttons " src="img/Backgrounds/left-arrow-button.png" alt="left-arrow-button">
+      <img id="but1" class="mob-buttons" src="img/Backgrounds/right-arrow-button.png" alt="right-arrow-button">
+      <img id="but3" class="mob-buttons" src="img/Backgrounds/space-button.png" alt="up-mobile">
+      <img id="but4" class="mob-buttons" src="img/Backgrounds/d-button.png" alt="d-button">
+      </div>
+    </div>
+
+    <!--Endscreen you lost-->
     <div id="end-screen" class="end-screen hidden">
       <img
         class="fullscreen-element youlost"
@@ -79,6 +107,7 @@
       </div>
     </div>
 
+    <!--Endscreen Game over-->
     <div id="end-screen-won" class="end-screen hidden">
       <img src="img/5_background/second_half_background.png" alt="Endscreen" />
       <img
@@ -91,6 +120,7 @@
       </div>
     </div>
 
+    <!--Story Container-->
     <div id="story-container" class="end-screen hidden">
       <img
         class="main-container-img"
@@ -98,7 +128,7 @@
         alt="background"
       />
       <div class="inner-story-container">
-        <img onclick="closeStory()" src="/img/Backgrounds/left-arrow.png" />
+        <img onclick="closeStory()" src="img/Backgrounds/left-arrow-button.png" />
         <span>
           In the endless expanses of the Mexican desert, Pepe Peligroso, a brave
           adventurer, faces a plague of wild chickens. Armed with nothing but
@@ -111,9 +141,10 @@
       </div>
     </div>
 
+    <!--Settings Container-->
     <div id="settings-screen" class="settings-screen hidden">
       <div class="container" onclick="closeSettings()">
-        <img class="back-btn-settings" src="/img/Backgrounds/left-arrow.png" />
+        <img class="back-btn-settings" src="img/Backgrounds/left-arrow.png" />
         <div class="button-settings">
           <table>
             <tr>

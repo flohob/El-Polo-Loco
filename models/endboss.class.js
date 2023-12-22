@@ -1,10 +1,24 @@
 class Endboss extends MoveableObject {
-  height = 300; 
-  width = 200; 
-  y = 360; 
-  x = 70; 
-  energy = 20;
-  world;
+  height = 300;
+  width = 200;
+  y = 360;
+  x = 70;
+  energy = 15;
+  world; // Instance for the Class World
+
+  /**
+   * for Collision detection
+   */
+  offset = {
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  };
+
+  /**
+   * Image Sources
+   */
 
   IMAGES_WALKING = [
     "img/4_enemie_boss_chicken/1_walk/G1.png",
@@ -36,6 +50,15 @@ class Endboss extends MoveableObject {
     "img/4_enemie_boss_chicken/5_dead/G26.png",
   ];
 
+  /**
+   * Checks if the Charater is near the Endboss
+   */
+  hasFirstContact = false;
+
+  /**
+   * constructor, loadImages, changes values of x y speed
+   */
+
   constructor() {
     super().loadImage("img/4_enemie_boss_chicken/2_alert/G5.png");
     this.y = 120;
@@ -46,6 +69,9 @@ class Endboss extends MoveableObject {
     this.loadImages(this.IMAGES_DEAD);
   }
 
+  /**
+   * Function if the Endboss is hit
+   */
   bottleHitBoss() {
     this.world.bossHitted = true;
     setTimeout(() => {
@@ -56,23 +82,47 @@ class Endboss extends MoveableObject {
     }
   }
 
+  /**
+   * Function for display the Endscreen
+   */
   showEndScreen() {
-    document.getElementById("canvas").classList.add('hidden');
-    document.getElementById("end-screen-won").classList.remove('hidden');
+    document.getElementById("canvas").classList.add("hidden");
+    document.getElementById("end-screen-won").classList.remove("hidden");
+    document
+      .getElementById("end-screen-fullscreen-won")
+      .classList.add("hidden");
   }
+
+  /**
+   * Function for showing the Endscreen in Fullscreen Mode
+   */
 
   showEndScreenFullscreen() {
-    document.getElementById('canvas').classList.add('hidden');
-    document.getElementById('end-screen-fullscreen-won').classList.remove('hidden');
+    document.getElementById("canvas").classList.add("hidden");
+    document
+      .getElementById("end-screen-fullscreen-won")
+      .classList.remove("hidden");
+    document.getElementById("mobile-container").classList.add("hidden");
   }
 
+  /**
+   * checks if the is on a certain x position and turns the boolean hasFirstContact into true
+   */
+
   hadFirstContact() {
-    if (this.world.character.x > 1550) {
+    // Überprüfe, ob der Endboss bereits den Punkt erreicht hat
+    if (!this.hasFirstContact && this.world.character.x > 1550) {
+      this.hasFirstContact = true;
+    }
+    if (this.hasFirstContact) {
       this.moveLeft();
       this.playAnimation(this.IMAGES_WALKING);
     }
   }
 
+  /**
+   * plays animation in certain cases
+   */
   animate() {
     setInterval(() => {
       this.hadFirstContact();
@@ -82,20 +132,18 @@ class Endboss extends MoveableObject {
         if (this.isDead()) {
           this.playAnimation(this.IMAGES_DEAD);
 
-          // Timeout für die Endboss-Animation
           setTimeout(() => {
-            if (window.innerWidth > 720) {
-              // Rufe die Funktion mit Klammern auf
+            if (
+              document.getElementById("canvas").classList.contains("fullscreen")
+            ) {
               this.showEndScreenFullscreen();
             } else {
               this.showEndScreen();
             }
-
             this.world.character.walking_sound.muted = true;
-          }, 2000); // 2000 Millisekunden = 2 Sekunden
+          }, 2000);
         }
       }
     }, 200);
   }
-  
 }

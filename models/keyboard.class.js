@@ -1,4 +1,7 @@
 class Keyboard {
+    /**
+     * keyboard settings - which are set false. Turns to True if the Player press the certain buttons
+     */
 LEFT = false;
 RIGHT = false;
 UP = false;
@@ -7,5 +10,5 @@ SPACE = false;
 D = false;
 
 
-// Keyboard Class die Standardmäßig auf false gesetzt sind - werden auf True gesetzt sobald diese gedrückt werden
+
 }

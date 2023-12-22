@@ -7,7 +7,7 @@ class Coins extends MoveableObject {
 
    
     constructor() {
-      super().loadImage("img/8_coin/coin_1.png"); // loadImg wird hier von der SuperKlasse aufgerufen
+      super().loadImage("img/8_coin/coin_1.png"); 
       this.x = 800 + Math.random() * 2500;
       this.y = 20 + Math.random() * 280;
     }

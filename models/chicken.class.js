@@ -1,8 +1,14 @@
 class chicken extends MoveableObject {
-  y = 340;
+  y = 330;
   height = 90;
-  width = 90;
+  width = 60;
   energy = 5;
+  offset = {
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0
+  };
   IMAGES_WALKING = [
     "img/3_enemies_chicken/chicken_normal/1_walk/1_w.png",
     "img/3_enemies_chicken/chicken_normal/1_walk/2_w.png",
@@ -12,6 +18,8 @@ class chicken extends MoveableObject {
   IMAGES_DEAD = [
     'img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
 ];
+
+sound_chicken = new Audio('https://cdn.freesound.org/previews/316/316920_4921277-lq.mp3')
 
   constructor() {
     super().loadImage("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png"); 
