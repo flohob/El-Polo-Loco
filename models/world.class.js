@@ -14,6 +14,7 @@ class World {
   bottle = this.level.bottles; // instance of bottles
   camera_x = 0; // camera x position 
   sound_coin = new Audio("https://cdn.freesound.org/previews/443/443258_6142149-lq.mp3"); // sound for collecting coins and tabasco
+  soundplay = true;
 
 
   /**
@@ -111,13 +112,11 @@ class World {
     }, 1000);
   }
 
-  /**
-   * 
-   * @param {Array} coin // stands for the amounts of coins which are in the game
-   */
+  
   
 /**
  * Function for collecting the Coins after Collison and splices them out of the array for the game
+ * 
  */
   collectCoin(coin) {
     this.coinbar.collectedCoins++;
@@ -131,11 +130,9 @@ class World {
   /**
    * 
    * @param {Array} bottle // stands for the Amount of the bottles in the game
-   */
-
-  /**
    * Function for collecting the Bottles in the Game - splices them right after the Collision
-   */
+   * */
+
   collectBottle(bottle) {
     this.tabasco.collectedBottles++;
     const index = this.level.bottles.indexOf(bottle);
@@ -168,11 +165,8 @@ class World {
 
   /**
    * 
-   * @param {Array} enemy // Array which represents the Enemies in the Game (chicken + Endboss)
-   */
-
-  /**
    * handles the Collision when the Character is above the Enemys
+   * @param {Array} enemy // Array which represents the Enemies in the Game (chicken + Endboss)
    */
 
   handleAirCollision(enemy) {

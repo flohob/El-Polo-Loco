@@ -2,7 +2,7 @@ let canvas; // Declare a variable for the canvas element
 let world; // Declare a variable for the game world
 let keyboard = new Keyboard(); // Create a new instance of the Keyboard class
 let backgroundmusic = new Audio("https://cdn.freesound.org/previews/585/585006_13199071-lq.mp3"); // Create an Audio object with the specified background music URL
-let playMusic = true; // Boolean flag to control whether the background music is set to play initially
+let playMusic = false; // Boolean flag to control whether the background music is set to play initially
 
 /**
  * Function for developing a World to play the Game + calls the Function toggleMusic which is described in the lower Part of the Code
@@ -12,7 +12,6 @@ function init() {
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
   console.log("My Character is", world["enemies"]);
-  toggleMusic();
 }
 
 /**
@@ -20,7 +19,7 @@ function init() {
  */
 function toggleMusic() {
   playMusic = !playMusic; 
-  if (playMusic) {
+  if (playMusic === true) {
     backgroundmusic.loop = true;
     backgroundmusic.play();
     changeMusicImage(true);
@@ -33,21 +32,22 @@ function toggleMusic() {
 
 /**
  *This Function is for chaning the Mute Icon to Speaker Icon
- *  
  * @param {boolean} isMusicPlaying checks if the Music is playing
  */
 
-function changeMusicImage(isMusicPlaying) {
-  var musicImage = document.getElementById("music-toggle-image");
-  var musicImage2 = document.getElementById("music-btn2");
+ function changeMusicImage(isMusicPlaying) {
+  var musicImage2 = document.getElementById("music-toggle-image");
+  var musicImage = document.getElementById("music-btn2");
 
   // Ändere das Bildquellenattribut entsprechend dem Status der Musik
   if (isMusicPlaying) {
-    musicImage.src = "img/Backgrounds/remove-1521310_640.png";
-    musicImage2.src = "img/Backgrounds/remove-1521310_640.png";
-  } else {
-    musicImage.src = "img/Backgrounds/speaker-1521312_640.png";
+    // Musik spielt, zeige das Bild des normalen Lautsprechers
     musicImage2.src = "img/Backgrounds/speaker-1521312_640.png";
+    musicImage.src = "img/Backgrounds/speaker-1521312_640.png";
+  } else {
+    // Musik spielt nicht, zeige das Bild des entfernten Lautsprechers
+    musicImage2.src = "img/Backgrounds/remove-1521310_640.png";
+    musicImage.src = "img/Backgrounds/remove-1521310_640.png";
   }
 }
 
@@ -65,6 +65,14 @@ function stopBackgroundmusic() {
  */
 
 function startGame() {
+  if (playMusic) {
+    backgroundmusic.loop = true;
+    backgroundmusic.play();
+    changeMusicImage(true);
+  } else {
+    stopBackgroundmusic();
+    changeMusicImage(false);
+  }
   initLevel();
   init();
   document.getElementById("start-screen").classList.add("hidden");
@@ -139,6 +147,15 @@ function closeFullscreen() {
  */
 
 function startGameFullscreen() {
+  // Initialisiere Musik und Bild direkt, anstatt toggleMusic() zu verwenden
+  if (playMusic) {
+    backgroundmusic.loop = true;
+    backgroundmusic.play();
+    changeMusicImage(true);
+  } else {
+    stopBackgroundmusic();
+    changeMusicImage(false);
+  }
   initLevel();
   init();
   document.getElementById("startscreen-fullscreen").classList.add("hidden");

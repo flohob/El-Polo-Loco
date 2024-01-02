@@ -3,7 +3,7 @@ class Endboss extends MoveableObject {
   width = 200;
   y = 360;
   x = 70;
-  energy = 15;
+  energy = 25;
   world; // Instance for the Class World
 
   /**

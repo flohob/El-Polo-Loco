@@ -15,7 +15,7 @@ canvas {
   background-image: url("img/9_intro_outro_screens/start/startscreen_1.png");
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 900px) {
   canvas {
     width: 100%;
   }
@@ -36,19 +36,35 @@ canvas {
     display: flex !important;
   }
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 900px) {
     canvas {
       height: 100%;
     }
   }
 
-  @media screen and (orientation: portrait) {
+  @media screen and (orientation:Portrait) {
     #startscreen-fullscreen {
       display: none !important;
     }
     #rotate-text {
       display: block !important;
     }
+    #canvas {
+      display: none !important;
+    }
+    #mobile-buttons {
+      display: none !important;
+    }
+    #end-screen {
+      display: none !important;
+    }
+    #endscreen-won {
+      display: none !important;
+    }
+    .fullscreen-pic {
+      display: none !important;
+    }
+
   }
 }
 
@@ -346,14 +362,14 @@ table img {
   align-items: flex-end;
 }
 
-.fullscreen-pic {
-  position: absolute;
-  display: flex;
-  justify-content: flex-start;
-  align-items: baseline;
-  width: 720px;
-  height: 480px;
+
+  .fullscreen-pic {
+    position: fixed;
+    top: 10px; /* Anpassen nach Bedarf */
+    left: 10px; /* Anpassen nach Bedarf */
+    z-index: 1000; /* Stellen Sie sicher, dass es über anderen Elementen liegt */
 }
+
 
 .pic {
   height: 42px !important;
@@ -416,4 +432,10 @@ table img {
   color: white;
   font-size: 52px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+#buttons_Ingame {
+  display: flex !important;
+  justify-content: end !important;
+  
 }
